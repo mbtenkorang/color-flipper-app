@@ -2,60 +2,56 @@ import { useState } from "react";
 import { Button } from "./Button";
 
 export default function () {
-  const [red, setRed] = useState(0);
-  const [green, setGreen] = useState(0);
-  const [blue, setBlue] = useState(0);
+  const [rgbValues, setRgbValues] = useState({
+    red: 0,
+    green: 0,
+    blue: 0,
+  });
   const [rgbaColor, setRgbaColor] = useState("");
 
-  function changeRed(e) {
-    return setRed(e.target.value);
-  }
-  function changeGreen(e) {
-    return setGreen(e.target.value);
-  }
-  function changeBlue(e) {
-    return setBlue(e.target.value);
-  }
-
-  function assign_rgb_value(e) {
-    let rgb_value = `rgb(${red}, ${green}, ${blue})`;
+  function assign_rgb_value() {
+    let rgb_value = `rgb(${rgbValues.red}, ${rgbValues.green}, ${rgbValues.blue})`;
     return setRgbaColor(rgb_value);
   }
 
+  const handleChange = (name) => (event) => {
+    setRgbValues({ ...rgbValues, [name]: event.target.value });
+  };
+
   return (
-    <div className="h-2/3">
+    <div
+      className="h-2/3"
+      style={{ backgroundColor: `${rgbaColor}` }}
+    >
       <label htmlFor="red">Red:</label>
       <input
         className="border-2 ml-4"
         type="number"
-        value={red}
-        onChange={(e) => changeRed(e)}
+        value={rgbValues.red}
+        onChange={handleChange("red")}
       />
       <br />
       <label htmlFor="green">Green:</label>
       <input
         className="border-2 ml-4"
         type={"number"}
-        value={green}
-        onChange={(e) => changeGreen(e)}
+        value={rgbValues.green}
+        onChange={handleChange("green")}
       />
       <br />
       <label htmlFor="blue">Blue:</label>
       <input
         className="border-2 ml-4"
         type={"number"}
-        value={blue}
-        onChange={(e) => changeBlue(e)}
+        value={rgbValues.blue}
+        onChange={handleChange("blue")}
       />
       <br />
       <Button
-        name="Click me"
+        name="Set Color"
         handleClick={assign_rgb_value}
       />
-      <p
-        className="text-md"
-        style={{ backgroundColor: `${rgbaColor}` }}
-      >
+      <p className="text-md">
         Lorem ipsum dolor sit amet consectetur adipisicing elit. Quis, quod
         necessitatibus expedita quo impedit cumque ipsa dolorum veritatis
         officia nostrum.
