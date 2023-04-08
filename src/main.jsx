@@ -1,12 +1,11 @@
 import React from "react";
 import ReactDOM from "react-dom/client";
-import App from "./App";
-import RGBPage from "./components/RGBPage";
+import { RouterProvider } from "react-router-dom";
+import router from "./MainRouter";
 import "./index.css";
 
 ReactDOM.createRoot(document.getElementById("root")).render(
   <React.StrictMode>
-    {/* <App /> */}
-    <RGBPage />
+    <RouterProvider router={router} />
   </React.StrictMode>
 );

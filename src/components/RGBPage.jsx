@@ -3,14 +3,15 @@ import { Button } from "./Button";
 
 export default function () {
   const [rgbValues, setRgbValues] = useState({
-    red: 0,
-    green: 0,
-    blue: 0,
+    red: 90,
+    green: 90,
+    blue: 90,
   });
   const [rgbaColor, setRgbaColor] = useState("");
 
   function assign_rgb_value() {
-    let rgb_value = `rgb(${rgbValues.red}, ${rgbValues.green}, ${rgbValues.blue})`;
+    let values = Object.values(rgbValues).join(",");
+    let rgb_value = `rgb(${values})`;
     return setRgbaColor(rgb_value);
   }
 
